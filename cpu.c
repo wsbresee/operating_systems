@@ -1,7 +1,7 @@
 #include "oslabs.h"
 
 struct PCB handle_process_arrival_pp(struct PCB ready_queue[QUEUEMAX], int *queue_cnt, struct PCB current_process, struct PCB new_process, int timestamp) {
-    if (current_process == NULLPCB) {
+    if (current_process == [PID:0, AT:0, TBT:0, EST:0, EET:0, RBT:0, Priority:0]) {
         int total_bursttime = new_process->total_bursttime;
         new_process->execution_starttime = timestamp;
         new_process->execution_endttime = timestamp + total_bursttime;
@@ -29,9 +29,9 @@ struct PCB handle_process_arrival_pp(struct PCB ready_queue[QUEUEMAX], int *queu
 
 struct PCB handle_process_completion_pp(struct PCB ready_queue[QUEUEMAX], int *queue_cnt, int timestamp) {
     if (queue_cnt < 1) {
-        return NULLPCB;
+        return [PID:0, AT:0, TBT:0, EST:0, EET:0, RBT:0, Priority:0];
     } else {
-        struct PCB highest_priority_PCB = NULLPCB;
+        struct PCB highest_priority_PCB = [PID:0, AT:0, TBT:0, EST:0, EET:0, RBT:0, Priority:0];
         highest_priority_PCB->process_priority = 1024;
         for (int i = 0; i < queue_cnt; i++) {
             if (ready_queue[i]->process_priority < highest_priority_PCB->process_priority) {
@@ -45,7 +45,7 @@ struct PCB handle_process_completion_pp(struct PCB ready_queue[QUEUEMAX], int *q
 }
 
 struct PCB handle_process_arrival_srtp(struct PCB ready_queue[QUEUEMAX], int *queue_cnt, struct PCB current_process, struct PCB new_process, int time_stamp) {
-    if (current_process == NULLPCB) {
+    if (current_process == [PID:0, AT:0, TBT:0, EST:0, EET:0, RBT:0, Priority:0]) {
         new_process->execution_starttime = timestamp;
         new_process->execution_endtime = timestamp + new_process->total_bursttime;
         new_process->remaining_bursttime = new_process->total_bursttime;
@@ -72,9 +72,9 @@ struct PCB handle_process_arrival_srtp(struct PCB ready_queue[QUEUEMAX], int *qu
 
 struct PCB handle_process_completion_srtp(struct PCB ready_queue[QUEUEMAX], int *queue_cnt, int timestamp) {
     if (queue_cnt < 1) {
-        return NULLPCB;
+        return [PID:0, AT:0, TBT:0, EST:0, EET:0, RBT:0, Priority:0];
     } else {
-        struct PCB next_PCB = NULLPCB;
+        struct PCB next_PCB = [PID:0, AT:0, TBT:0, EST:0, EET:0, RBT:0, Priority:0];
         for (int i = 0; i < queue_cnt; i++) {
             if (ready_queue[i]->remaining_bursttime < next_PCB->remaining_bursttime) {
                 next_PCB = ready_queue[i];
@@ -87,7 +87,7 @@ struct PCB handle_process_completion_srtp(struct PCB ready_queue[QUEUEMAX], int 
 }
 
 struct PCB handle_process_arrival_rr(struct PCB ready_queue[QUEUEMAX], int *queue_cnt, struct PCB current_process, struct PCB new_process, int timestamp, int time_quantum) {
-    if (current_process == NULLPCB) {
+    if (current_process == [PID:0, AT:0, TBT:0, EST:0, EET:0, RBT:0, Priority:0]) {
         int total_bursttime = new_process->total_bursttime;
         new_process->execution_starttime = timestamp;
         new_process->execution_endttime = timestamp + total_bursttime;
@@ -104,7 +104,7 @@ struct PCB handle_process_arrival_rr(struct PCB ready_queue[QUEUEMAX], int *queu
 
 struct PCB handle_process_completion_rr(struct PCB ready_queue[QUEUEMAX], int *queue_cnt, int timestamp, int time_quantum) {
     if (queue_cnt < 1) {
-        return NULLPCB;
+        return [PID:0, AT:0, TBT:0, EST:0, EET:0, RBT:0, Priority:0];
     } else {
         struct PCB next_PCB = ready_queue[0];
         for (int i = 0; i < queue_cnt; i++) {
